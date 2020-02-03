@@ -55,8 +55,25 @@ func main() {
 	defer resp.Body.Close()
 	_ = json.NewDecoder(resp.Body).Decode(&ipInfo)
 
-	fmt.Printf("IP		%s\n", ipInfo.IP)
-	fmt.Printf("Geo		%s, %s, %s\n", ipInfo.City, ipInfo.Region, ipInfo.Country)
-	fmt.Printf("ASN		[%s: %s]\n", ipInfo.Asn.Type, ipInfo.Asn.Name)
-	fmt.Printf("Company [%s: %s]\n", ipInfo.Company.Type, ipInfo.Company.Name)
+	vpn := "🔓 none"
+	if ipInfo.Vpn.Any {
+		vpn = "🔒"
+		vpnTypes := map[string]bool{
+			"ipsec":   ipInfo.Vpn.Ipsec,
+			"openvpn": ipInfo.Vpn.Openvpn,
+			"proxy":   ipInfo.Vpn.Proxy,
+			"tor":     ipInfo.Vpn.Tor,
+		}
+		for k, v := range vpnTypes {
+			if v {
+				vpn += " " + k
+			}
+		}
+	}
+
+	fmt.Printf("IP	%s\n", ipInfo.IP)
+	fmt.Printf("Geo	%s, %s, %s\n", ipInfo.City, ipInfo.Region, ipInfo.Country)
+	fmt.Printf("ASN	[%s: %s]\n", ipInfo.Asn.Type, ipInfo.Asn.Name)
+	fmt.Printf("Org	[%s: %s]\n", ipInfo.Company.Type, ipInfo.Company.Name)
+	fmt.Printf("VPN	%s\n", vpn)
 }
