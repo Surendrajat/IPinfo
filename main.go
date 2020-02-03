@@ -73,7 +73,7 @@ func main() {
 	}
 
 	fmt.Printf("IP	%s\n", ipInfo.IP)
-	fmt.Printf("Geo	%s, %s, %s\n", ipInfo.City, ipInfo.Region, ipInfo.Country)
+	fmt.Printf("Geo	📍 %s, %s, %s\n", ipInfo.City, ipInfo.Region, ipInfo.Country)
 	fmt.Printf("ASN	[%s: %s(%s)]\n", strings.ToUpper(ipInfo.Asn.Type), ipInfo.Asn.Name, ipInfo.Asn.Domain)
 	fmt.Printf("Org	[%s: %s(%s)]\n", strings.ToUpper(ipInfo.Company.Type), ipInfo.Company.Name, ipInfo.Company.Domain)
 	fmt.Printf("VPN	%s\n", vpn)
