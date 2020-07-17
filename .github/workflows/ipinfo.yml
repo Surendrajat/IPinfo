@@ -1,0 +1,55 @@
+name: ipinfo
+
+on:
+  push:
+    branches: [master]
+    tags:
+      - v*
+  pull_request:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.13
+        id: go
+
+      - name: Check out repo
+        uses: actions/checkout@v2
+
+      - name: Get dependencies
+        run: |
+          go get -v -t -d ./...
+
+      - name: Build for linux/amd64
+        run: GOOS=linux GOARCH=amd64 go build -v -o ipinfo_linux_amd64 .
+
+      - name: Build for linux/386
+        run: GOOS=linux GOARCH=386 go build -v -o ipinfo_linux_386 .
+
+      - name: Build for darwin/amd64
+        run: GOOS=darwin GOARCH=amd64 go build -v -o ipinfo_darwin_amd64 .
+
+      - name: Build for darwin/386
+        run: GOOS=darwin GOARCH=386 go build -v -o ipinfo_darwin_386 .
+
+      - name: Build for windows/amd64
+        run: GOOS=windows GOARCH=amd64 go build -v -o ipinfo_windows_amd64.exe .
+
+      - name: Build for windows/386
+        run: GOOS=windows GOARCH=386 go build -v -o ipinfo_windows_386.exe .
+
+      - run: ls -alhrt ipinfo_*
+
+      - name: Create Release
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          name: Continuous Release ${{ github.ref }}
+          files: ipinfo_*
