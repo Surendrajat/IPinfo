@@ -1,20 +1,25 @@
 # IPinfo
 
-Get info about your Public IP, Geo location and VPN/Proxy detection.
+Get info about your Public IP: Geo location, ASN, ISP and VPN/Proxy detection from CLI
+
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/surendrajat/ipinfo?logo=github&labelColor=black) ![GitHub Workflow](https://img.shields.io/github/workflow/status/surendrajat/ipinfo/ipinfo/master?logo=github&labelColor=black)
 
 ## Install
 
-- Clone the repo
-  
-  ```bash
-  git clone https://github.com/surendrajat/ipinfo
-  ```
+- **Download** `ipinfo` binary from [latest release](https://github.com/Surendrajat/IPinfo/releases/latest) and add it to `PATH`,
+   or
+- **Build** yourself (requires `Go` to be installed)
+  - Clone the repo
 
-- Build and install the binary
+    ```bash
+    git clone https://github.com/surendrajat/ipinfo
+    ```
 
-  ```bash
-  cd ipinfo && go install .
-  ```
+  - Build and install the binary
+
+    ```bash
+    cd ipinfo && go install .
+    ```
 
 ## Run `ipinfo`
 
@@ -38,3 +43,7 @@ Company [BUSINESS: TEFINCOM S.A.(nordvpn.com)]
 Privacy vpn
 $
 ```
+
+## Credits
+
+[`ipinfo.io`](https://ipinfo.io) : IP Address Data Provider
