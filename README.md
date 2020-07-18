@@ -6,20 +6,13 @@ Get info about your Public IP: Geo location, ASN, ISP and VPN/Proxy detection fr
 
 ## Install
 
-- **Download** `ipinfo` binary from [latest release](https://github.com/Surendrajat/IPinfo/releases/latest) and add it to `PATH`,
-   or
-- **Build** yourself (requires `Go` to be installed)
-  - Clone the repo
+- If you have **`Go`** installed and `$GOPATH/bin` is in `PATH`, simply do
 
     ```bash
-    git clone https://github.com/surendrajat/ipinfo
+    go get -u github.com/surendrajat/ipinfo
     ```
 
-  - Build and install the binary
-
-    ```bash
-    cd ipinfo && go install .
-    ```
+- Or, **Download** `ipinfo` binary from [latest release](https://github.com/Surendrajat/IPinfo/releases/latest) and add it to `PATH`
 
 ## Run `ipinfo`
 
