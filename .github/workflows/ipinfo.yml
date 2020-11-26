@@ -34,14 +34,8 @@ jobs:
       - name: Build for darwin/amd64
         run: GOOS=darwin GOARCH=amd64 go build -v -o ipinfo_darwin_amd64 .
 
-      - name: Build for darwin/386
-        run: GOOS=darwin GOARCH=386 go build -v -o ipinfo_darwin_386 .
-
       - name: Build for windows/amd64
         run: GOOS=windows GOARCH=amd64 go build -v -o ipinfo_windows_amd64.exe .
-
-      - name: Build for windows/386
-        run: GOOS=windows GOARCH=386 go build -v -o ipinfo_windows_386.exe .
 
       - run: ls -alhrt ipinfo_*
 
