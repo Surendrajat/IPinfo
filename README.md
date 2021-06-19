@@ -9,7 +9,7 @@ Get info about your Public IP: Geo location, ASN, ISP and VPN/Proxy detection fr
 - If you have **`Go`** installed and `$GOPATH/bin` is in `PATH`, simply do
 
     ```bash
-    go get -u github.com/surendrajat/ipinfo
+    go get github.com/surendrajat/ipinfo
     ```
 
 - Or, **Download** `ipinfo` binary from [latest release](https://github.com/Surendrajat/IPinfo/releases/latest) and add it to `PATH`
