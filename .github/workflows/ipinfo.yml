@@ -32,12 +32,16 @@ jobs:
         run: GOOS=linux GOARCH=386 go build -v -o ipinfo_linux_386 .
 
       - name: Build for darwin/amd64
-        run: GOOS=darwin GOARCH=amd64 go build -v -o ipinfo_darwin_amd64 .
+        run: GOOS=darwin GOARCH=amd64 go build -v -o ipinfo_macos_amd64 .
 
       - name: Build for windows/amd64
         run: GOOS=windows GOARCH=amd64 go build -v -o ipinfo_windows_amd64.exe .
 
       - run: ls -alhrt ipinfo_*
+
+      - name: Get release version
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
       - name: Create Release
         if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
@@ -45,5 +49,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: Continuous Release ${{ github.ref }}
+          name: ${{ env.RELEASE_VERSION }}
           files: ipinfo_*
